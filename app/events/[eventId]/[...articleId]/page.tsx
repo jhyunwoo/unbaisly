@@ -21,7 +21,7 @@ const getArticles = unstable_cache(
   ["articles"],
   {
     revalidate: 60,
-  }
+  },
 );
 
 /**
@@ -35,14 +35,14 @@ const getOtherArticles = unstable_cache(
     return await db.query.articleTable.findMany({
       where: and(
         notInArray(articleTable.id, articleId.map(Number)),
-        eq(articleTable.eventId, Number(eventId))
+        eq(articleTable.eventId, Number(eventId)),
       ),
     });
   },
   ["articles"],
   {
     revalidate: 60,
-  }
+  },
 );
 
 /**
@@ -75,21 +75,21 @@ export default async function ArticlePage({
         otherArticles = otherArticles.filter(
           (otherArticle) =>
             typeof otherArticle.politicalGrade === "number" &&
-            otherArticle.politicalGrade <= 0
+            otherArticle.politicalGrade <= 0,
         );
       }
       if (article.politicalGrade < 0) {
         otherArticles = otherArticles.filter(
           (otherArticle) =>
             typeof otherArticle.politicalGrade === "number" &&
-            otherArticle.politicalGrade >= 0
+            otherArticle.politicalGrade >= 0,
         );
       }
       if (article.politicalGrade === 0) {
         otherArticles = otherArticles.filter(
           (otherArticle) =>
             typeof otherArticle.politicalGrade === "number" &&
-            otherArticle.politicalGrade !== 0
+            otherArticle.politicalGrade !== 0,
         );
       }
     }
@@ -113,7 +113,7 @@ export default async function ArticlePage({
         </div>
         <p>{thisArticle?.journalist}</p>
       </div>
-      <SummarizedText>{thisArticle.summarized}</SummarizedText>
+      <SummarizedText>{thisArticle?.summarized}</SummarizedText>
       <div className="p-4">
         {thisArticle?.content?.split("`").map((line, idx) => (
           <p key={idx}>
