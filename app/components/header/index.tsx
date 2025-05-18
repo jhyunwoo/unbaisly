@@ -1,5 +1,4 @@
 import Link from "next/link";
-import MenuBarButton from "./menu-bar-button";
 import MenuOptions from "./menu-options";
 import Image from "next/image";
 
