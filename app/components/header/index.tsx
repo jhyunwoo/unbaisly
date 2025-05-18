@@ -19,7 +19,6 @@ export default function Header() {
           />
           <p>UnbAIsly</p>
         </Link>
-        <MenuBarButton />
       </div>
       <MenuOptions />
     </>
